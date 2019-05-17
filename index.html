@@ -10,22 +10,29 @@
 </style>
 </head>
 <body>
-                
+<input type="text" id="myText" placeholder="Start Page">
+<button id="myBtn">Load Pages</button>
 <div id="pages">
 </div>
 <script>
-    var startPage = 138;
-    for (let i = 0; i < 2; i++) {
+  var startPage;
+    function doIt(j,k){
+      for (let i = 0; i < k; i++) {
         var newDiv = document.createElement("div");
         newDiv.setAttribute("class", "page");
         var newImg = document.createElement("img");
         newDiv.appendChild(newImg);
-        var srcAtt = `http://quran.ksu.edu.sa/ayat/safahat1/${startPage+i}.png`
+        var srcAtt = `http://quran.ksu.edu.sa/ayat/safahat1/${j+i}.png`
         newImg.setAttribute("src", srcAtt);
         var element = document.getElementById("pages");
         element.appendChild(newDiv);    
+      }
     }
-    
+    function logger(){
+      startPage = document.getElementById("myText").value * 1;
+      doIt(startPage,3);
+    }
+    document.getElementById("myBtn").addEventListener("click", logger);
 </script>
 </body>
 </html>
