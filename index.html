@@ -7,19 +7,25 @@
     body {
       background: #555;
     }
-    .content {
-      max-width: 500px;
-      margin: auto;
-      //padding: 10px;
-    }
 </style>
 </head>
 <body>
-  <div class="page">
-    <img src="http://quran.ksu.edu.sa/ayat/safahat1/138.png">
-  </div>
-    <div class="page">
-    <img src="http://quran.ksu.edu.sa/ayat/safahat1/139.png">
-  </div>
+                
+<div id="pages">
+</div>
+<script>
+    var startPage = 138;
+    for (let i = 0; i < 2; i++) {
+        var newDiv = document.createElement("div");
+        newDiv.setAttribute("class", "page");
+        var newImg = document.createElement("img");
+        newDiv.appendChild(newImg);
+        var srcAtt = `http://quran.ksu.edu.sa/ayat/safahat1/${startPage+i}.png`
+        newImg.setAttribute("src", srcAtt);
+        var element = document.getElementById("pages");
+        element.appendChild(newDiv);    
+    }
+    
+</script>
 </body>
 </html>
