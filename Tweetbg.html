@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TweetBG</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <img id="bg" width="720" height="576" src="BG.jpg" alt="background">
+  <img id="fg" width="220" height="277" src="FG.PNG" alt="foreground">
+  <button href="#" class="button" id="btn-download">Download</button>
+  <canvas id="myCanvas" width="1920" height="1080" style="border:1px solid #d3d3d3;">
+  <!--
+  <div class="keys">
+    <div data-key="65" class="key">
+      <kbd>A</kbd>
+      <span class="sound">clap</span>
+    </div>
+  </div>
+  -->
+<script>
+  const myCanvas = document.getElementById("myCanvas");
+  function drawToCanvas() {
+    const ctx = myCanvas.getContext("2d");
+    const bg = document.getElementById("bg");
+    const fg = document.getElementById("fg");
+    ctx.drawImage(bg, 0, 0, 1920, 1080);
+    //void ctx.drawImage(image, dx, dy, dWidth, dHeight);
+    //ctx.drawImage(fg, 1920/2-306/2, 1080/2-200/2, 306, 200);
+
+  }
+/*
+  myCanvas.toBlob(function(blob) {
+    var newImg = document.createElement('img'),
+        url = URL.createObjectURL(blob);
+        
+    newImg.onload = function() {
+      // no longer need to read the blob so it's revoked
+      URL.revokeObjectURL(url);
+    };
+    
+    newImg.src = url;
+    document.body.appendChild(newImg);
+  });
+*/
+  let button = document.getElementById('btn-download');
+  function downloadImage() {
+    let dataURL = myCanvas.toDataURL('image/png');
+    button.href = dataURL;
+    //button.download = 'image.png';
+  }
+  
+
+  window.addEventListener('load', drawToCanvas);
+  button.addEventListener('click', downloadImage);
+  
+  /*
+  function removeTransition(e) {
+    if (e.propertyName !== 'transform') return;
+    e.target.classList.remove('playing');
+  }
+  function playSound(e) {
+    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+    const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
+    if (!audio) return;
+    key.classList.add('playing');
+    audio.currentTime = 0;
+    audio.play();
+  }
+  const keys = Array.from(document.querySelectorAll('.key'));
+  keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+  window.addEventListener('keydown', playSound);
+  */
+</script>
+
+</body>
+</html>
